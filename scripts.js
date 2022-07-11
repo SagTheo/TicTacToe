@@ -8,6 +8,7 @@ const box6 = document.querySelector('#r2-c3')
 const box7 = document.querySelector('#r3-c1-d2')
 const box8 = document.querySelector('#r3-c2')
 const box9 = document.querySelector('#r3-c3-d1')
+const button = document.querySelector('button')
 
 const threes = {
     'r1': [box1, box2, box3],
@@ -27,7 +28,12 @@ const circle = 'circle.svg'
 
 const checkFullRow = (row) => {
     rowsToCheck = row.split('-')
+    let result
     
+    // Need to use forEach and not simple for loop here so that the return statement 
+    // in the second if check stops the execution of the callback function of the forEach, 
+    // and not the execution of checkFullRow(), so we can go through every item 
+    // of rowsToCheck
     rowsToCheck.forEach(rowToCheck => {
         const first =  threes[rowToCheck][0]
 
@@ -36,13 +42,30 @@ const checkFullRow = (row) => {
 
             for (let i = 1; i < threes[rowToCheck].length; i++) {
                 const current = threes[rowToCheck][i].firstChild.getAttribute('src')
-                if (current !== "") {
-                    console.log('hey')
+                if (current === "" || current !== label) {
+                    return false
                 }
             }
+
+            threes[rowToCheck].forEach(box => {
+                box.classList.add('full')
+            })
+            result = true
         }
     })
+
+    return result
 }
+
+// To empty each box of the tic tac toe and start a new game
+button.addEventListener('click', () => {
+    divs.forEach(div => {
+        div.firstChild.setAttribute('src', "")
+        div.classList.remove('full')
+    })
+
+    player1 = true
+})
 
 divs.forEach(div => {
     div.addEventListener('click', (e) => {
@@ -64,7 +87,10 @@ divs.forEach(div => {
                 }
             }
 
-            checkFullRow(e.target.getAttribute('id'))
+            if (checkFullRow(e.target.getAttribute('id'))) {
+                const player = player1 ? '2' : '1'
+                alert('Player ' + player + ' won')
+            } 
         }
     })
 })
