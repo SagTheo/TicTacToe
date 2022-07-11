@@ -26,7 +26,22 @@ const cross = 'x-lg.svg'
 const circle = 'circle.svg'
 
 const checkFullRow = (row) => {
-    console.log(row)
+    rowsToCheck = row.split('-')
+    
+    rowsToCheck.forEach(rowToCheck => {
+        const first =  threes[rowToCheck][0]
+
+        if (first.firstChild.getAttribute('src') !== "") {
+            const label = first.firstChild.getAttribute('src')
+
+            for (let i = 1; i < threes[rowToCheck].length; i++) {
+                const current = threes[rowToCheck][i].firstChild.getAttribute('src')
+                if (current !== "") {
+                    console.log('hey')
+                }
+            }
+        }
+    })
 }
 
 divs.forEach(div => {
