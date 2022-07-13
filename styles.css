@@ -21,7 +21,7 @@ body {
     border: 1px solid black;
 }
 
-button {
+.reset {
     width: fit-content;
     height: fit-content;
     margin-top: 300px;
@@ -36,6 +36,33 @@ button {
 
 .full {
     background-color: green;
+}
+
+
+/* 
+
+Dialog box 
+
+*/
+dialog {
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: white;
+}
+
+dialog form {
+    width: fit-content;
+    margin: auto;
+}
+
+dialog .closeDialog {
+    font-size: x-large;
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+    border: 2px white solid;
+    color: black;
 }
 
 
