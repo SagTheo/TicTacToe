@@ -28,7 +28,6 @@ const circle = 'circle.svg'
 
 const checkFullRow = (row) => {
     rowsToCheck = row.split('-')
-    let result
     
     // Need to use forEach and not simple for loop here so that the return statement 
     // in the second if check stops the execution of the callback function of the forEach, 
@@ -50,11 +49,8 @@ const checkFullRow = (row) => {
             threes[rowToCheck].forEach(box => {
                 box.classList.add('full')
             })
-            result = true
         }
     })
-
-    return result
 }
 
 // To empty each box of the tic tac toe and start a new game
@@ -87,10 +83,7 @@ divs.forEach(div => {
                 }
             }
 
-            if (checkFullRow(e.target.getAttribute('id'))) {
-                const player = player1 ? '2' : '1'
-                alert('Player ' + player + ' won')
-            } 
+            checkFullRow(e.target.getAttribute('id'))
         }
     })
 })
