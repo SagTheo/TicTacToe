@@ -1,1 +1,1 @@
-<?php include_once ('secondVersion.js'); ?>
+<?php include_once ('index.html'); ?>
